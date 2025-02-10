@@ -6,6 +6,17 @@
     <title>Python To-Do</title>
 </head>
 <body>
-  <h2>Hello Flask!</h2>
+    <h2>Hello Flask!</h2>
+    <form method="POST">
+        <input type="text" name="task" placeholder="Enter task">
+        <button type="submit" formmethod="POST">Add Task</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% endfor %}
+    </ul>
+
 </body>
 </html>
