@@ -1,7 +1,6 @@
-from operator import methodcaller
+from crypt import methods
 
-from flask import Flask, render_template, request
-
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -15,6 +14,16 @@ def index():
         if task:
             tasks.append(task)
     return render_template('index.html', tasks=tasks)
+
+@app.route("/new", methods=["GET"])
+def new():
+    return render_template('new.html')
+
+@app.route("/remove/<int:index>", methods=["GET", "POST"])
+def remove_item(index):
+    if 0 <= index < len(tasks):
+        del tasks[index]
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.run(debug=True)

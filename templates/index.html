@@ -14,9 +14,16 @@
 
     <ul>
         {% for task in tasks %}
-            <li>{{ task }}</li>
+            <li>
+                {{ task }}
+                <form action="{{ url_for('remove_item', index=loop.index0) }}" method="POST">
+                    <button type="submit">X</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
-
+    <form action="/new" method="GET">
+        <button type="submit" formmethod="GET">New</button>
+    </form>
 </body>
 </html>
